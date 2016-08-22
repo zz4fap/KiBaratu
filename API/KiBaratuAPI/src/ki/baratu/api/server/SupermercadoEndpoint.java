@@ -1,6 +1,6 @@
-package o.que.tem.de.barato.aqui.server;
+package ki.baratu.api.server;
 
-import o.que.tem.de.barato.aqui.EMF;
+import ki.baratu.api.EMF;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;

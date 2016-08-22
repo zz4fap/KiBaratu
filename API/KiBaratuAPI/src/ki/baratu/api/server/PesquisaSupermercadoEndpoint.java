@@ -1,6 +1,5 @@
-package o.que.tem.de.barato.aqui.server;
+package ki.baratu.api.server;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Nullable;
@@ -15,7 +14,7 @@ import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
-import o.que.tem.de.barato.aqui.EMF;
+import ki.baratu.api.EMF;
 
 @Api(name = "pesquisasupermercadoendpoint", namespace = @ApiNamespace(ownerDomain = "tah.oque", ownerName = "tah.oque", packagePath = "barato.aqui.server"))
 public class PesquisaSupermercadoEndpoint {

@@ -1,4 +1,4 @@
-package o.que.tem.de.barato.aqui.server;
+package ki.baratu.api.server;
 
 import com.google.api.server.spi.config.Api;
 import com.google.api.server.spi.config.ApiMethod;
@@ -7,7 +7,7 @@ import com.google.api.server.spi.response.CollectionResponse;
 import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
-import o.que.tem.de.barato.aqui.EMF;
+import ki.baratu.api.EMF;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package o.que.tem.de.barato.aqui.server;
+package ki.baratu.api.server;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
