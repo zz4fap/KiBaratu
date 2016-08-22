@@ -1,0 +1,3 @@
+# Module kibaratuapi
+# RPC service class, partial path of RPC policy file
+ki.baratu.api.client.GreetingService, B341633BEC33F6063E3AC8F1190E211B.gwt.rpc

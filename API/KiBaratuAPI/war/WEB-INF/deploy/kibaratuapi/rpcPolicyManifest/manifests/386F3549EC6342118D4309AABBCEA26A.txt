@@ -1,0 +1,2 @@
+serviceClass: ki.baratu.api.client.GreetingService
+path: B341633BEC33F6063E3AC8F1190E211B.gwt.rpc

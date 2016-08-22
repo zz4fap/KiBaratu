@@ -13,9 +13,7 @@ import java.util.List;
 
 import javax.annotation.Nullable;
 import javax.inject.Named;
-import javax.persistence.EntityExistsException;
 import javax.persistence.EntityManager;
-import javax.persistence.EntityNotFoundException;
 import javax.persistence.Query;
 
 @Api(name = "pesquisaprodutoendpoint", namespace = @ApiNamespace(ownerDomain = "tah.oque", ownerName = "tah.oque", packagePath = "barato.aqui.server"))
@@ -85,20 +83,6 @@ public class PesquisaProdutoEndpoint {
 		return CollectionResponse.<Produto>builder().setItems(execute).setNextPageToken(cursorString).build();
 	}
 	
-	private boolean containsProduto(Produto produto) {
-		EntityManager mgr = getEntityManager();
-		boolean contains = true;
-		try {
-			Produto item = mgr.find(Produto.class, produto.getId());
-			if (item == null) {
-				contains = false;
-			}
-		} finally {
-			mgr.close();
-		}
-		return contains;
-	}
-
 	private static EntityManager getEntityManager() {
 		return EMF.get().createEntityManager();
 	}
