@@ -4,6 +4,13 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
 
-    <color name="colorBackTitle">#AADDFF</color>
+    <color name="colorBackTitle">#7799FF</color>
     <color name="colorFontTitle">#FFFFFF</color>
+
+    <color name="fontBranco">#FFFFFF</color>
+
+    <color name="fontAzulClaro">#EAEDFF</color>
+    <color name="fontAzul">#DFFFFF</color>
+    <color name="fontAzulEscuro">#CFFFFF</color>
+
 </resources>

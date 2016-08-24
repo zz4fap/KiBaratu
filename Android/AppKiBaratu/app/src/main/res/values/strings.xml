@@ -10,4 +10,11 @@
 
     <!-- String MainActivity -->
     <string name="lista_produtos">Lista de Produtos</string>
+
+    <!-- String CadastroProduto -->
+    <string name="titulo_cadastro_produto">Cadastro de Produto</string>
+
+    <!-- String CadastroSupermercado -->
+    <string name="titulo_cadastro_supermercado">Cadastro de Supermercado</string>
+
 </resources>
