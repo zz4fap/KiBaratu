@@ -135,7 +135,7 @@ public class ProcuraAlerta {
 		return alertas;
 	}
 	
-	void findAlertaPorIdProduto(Produto produto) {
+	static void findAlertaPorIdProduto(Produto produto) {
 		
 		Long id = produto.getId();
 		Double preco = produto.getPreco();
@@ -148,12 +148,14 @@ public class ProcuraAlerta {
 				
 				//TODO:
 				// Notificar cada um dos usuarios com alertas.
+				// Alertar clientes!!!!!!!!!
+				Email.sendMail(alerta.getEmail());
 				
 			}
 		}		
 	}
 	
-	void findAlertaPorNomeProduto(Produto produto) {
+	static void findAlertaPorNomeProduto(Produto produto) {
 		
 		String nome = produto.getNome();
 		Double preco = produto.getPreco();
@@ -166,6 +168,8 @@ public class ProcuraAlerta {
 				
 				//TODO:
 				// Notificar cada um dos usuarios com alertas.
+				// Alertar clientes!!!!!!!!!
+				Email.sendMail(alerta.getEmail());
 				
 			}
 		}		

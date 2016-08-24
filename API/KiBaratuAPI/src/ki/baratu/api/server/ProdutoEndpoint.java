@@ -103,6 +103,7 @@ public class ProdutoEndpoint {
 			
 			// TODO:
 			// Adicionar aqui código para verificar alertas!
+			ProcuraAlerta.findAlertaPorIdProduto(produto);
 			
 		} finally {
 			mgr.close();
@@ -129,6 +130,7 @@ public class ProdutoEndpoint {
 			
 			// TODO:
 			// Adicionar aqui código para verificar alertas!
+			ProcuraAlerta.findAlertaPorIdProduto(produto);
 			
 			
 		} finally {
