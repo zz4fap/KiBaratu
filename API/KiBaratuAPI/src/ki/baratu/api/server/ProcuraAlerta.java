@@ -89,6 +89,86 @@ public class ProcuraAlerta {
 		
 		return produtos;
 	}
+	
+	private List<Alerta> getAlertasByProductId(Long id) {
+		EntityManager mgr = null;
+		List<Alerta> alertas = null;
+
+		try {
+			mgr = getEntityManager();
+			Query query;
+
+			query = mgr.createQuery("select p from Alerta p where p.idProduto = :idProduto", Alerta.class);
+			query.setParameter("idProduto", id);		
+			alertas = (List<Alerta>) query.getResultList();
+
+			// Tight loop for fetching all entities from datastore and accomodate
+			// for lazy fetch.
+			for (Alerta obj : alertas);
+		} finally {
+			mgr.close();
+		}
+		
+		return alertas;
+	}
+	
+	private List<Alerta> getAlertasByProductName(String nome) {
+		EntityManager mgr = null;
+		List<Alerta> alertas = null;
+
+		try {
+			mgr = getEntityManager();
+			Query query;
+
+			query = mgr.createQuery("select p from Alerta p where p.nomeProduto = :nomeProduto", Alerta.class);
+			query.setParameter("nomeProduto", nome);		
+			alertas = (List<Alerta>) query.getResultList();
+
+			// Tight loop for fetching all entities from datastore and accomodate
+			// for lazy fetch.
+			for (Alerta obj : alertas);
+		} finally {
+			mgr.close();
+		}
+		
+		return alertas;
+	}
+	
+	void findAlertaPorIdProduto(Produto produto) {
+		
+		Long id = produto.getId();
+		Double preco = produto.getPreco();
+		
+		List<Alerta> alertas = getAlertasByProductId(id);
+		
+		for(Alerta alerta : alertas) {
+			
+			if(preco <= alerta.getValorAlerta()) {
+				
+				//TODO:
+				// Notificar cada um dos usuarios com alertas.
+				
+			}
+		}		
+	}
+	
+	void findAlertaPorNomeProduto(Produto produto) {
+		
+		String nome = produto.getNome();
+		Double preco = produto.getPreco();
+		
+		List<Alerta> alertas = getAlertasByProductName(nome);
+		
+		for(Alerta alerta : alertas) {
+			
+			if(preco <= alerta.getValorAlerta()) {
+				
+				//TODO:
+				// Notificar cada um dos usuarios com alertas.
+				
+			}
+		}		
+	}
 
 	void findAlertaPorIdProduto() {
 
