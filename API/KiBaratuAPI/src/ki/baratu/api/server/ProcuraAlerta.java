@@ -4,7 +4,6 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import ki.baratu.api.server.Email;
 
 import ki.baratu.api.EMF;
 
@@ -91,7 +90,8 @@ public class ProcuraAlerta {
 		return produtos;
 	}
 	
-	private List<Alerta> getAlertasByProductId(Long id) {
+	@SuppressWarnings("unchecked")
+	private static List<Alerta> getAlertasByProductId(Long id) {
 		EntityManager mgr = null;
 		List<Alerta> alertas = null;
 
@@ -113,7 +113,8 @@ public class ProcuraAlerta {
 		return alertas;
 	}
 	
-	private List<Alerta> getAlertasByProductName(String nome) {
+	@SuppressWarnings("unchecked")
+	private static List<Alerta> getAlertasByProductName(String nome) {
 		EntityManager mgr = null;
 		List<Alerta> alertas = null;
 
@@ -189,10 +190,10 @@ public class ProcuraAlerta {
 				
 				Produto produto = getProdutoById(id);
 				
-				// Se pesquisa retorna um produto, ent„o verificar preÁo.
+				// Se pesquisa retorna um produto, ent√£o verificar pre√ßo.
 				if(produto != null) {
 					
-					// Se preÁo cadastrado for menor do que o do alerta, ent„o usu·rio deve ser alertado.
+					// Se pre√ßo cadastrado for menor do que o do alerta, ent√£o usu√°rio deve ser alertado.
 					if(produto.getPreco() <= valor) {
 						
 						// Alertar clientes!!!!!!!!!
@@ -218,10 +219,10 @@ public class ProcuraAlerta {
 				
 				List<Produto> produtos = getProdutosByName(nome);
 				
-				// Se pesquisa retorna um produto, ent„o verificar preÁo.
+				// Se pesquisa retorna um produto, ent√£o verificar pre√ßo.
 				if(produtos != null) {
 					
-					// Se preÁo cadastrado for menor do que o do alerta, ent„o usu·rio deve ser alertado.
+					// Se pre√ßo cadastrado for menor do que o do alerta, ent√£o usu√°rio deve ser alertado.
 					
 					for(Produto produto : produtos) {
 						
