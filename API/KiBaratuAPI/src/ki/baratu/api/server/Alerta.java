@@ -8,9 +8,9 @@ public class Alerta {
 	
 	@Id
 	private Long id;
-	private String nomeProduto; // Nome do produto ao qual o alerta est· relacionado.
-	private Long idProduto;		// ID do produto ao qual o alerta est· relacionado.
-	private Double valorAlerta; // PreÁo abaixo do qual o alerta deve ser enviado ao usu·rio.
+	private String nomeProduto; // Nome do produto ao qual o alerta est√° relacionado.
+	private Long idProduto;		// ID do produto ao qual o alerta est√° relacionado.
+	private Double valorAlerta; // Pre√ßo abaixo do qual o alerta deve ser enviado ao usu√°rio.
 	private String email;
 	private String telefone;
 	
