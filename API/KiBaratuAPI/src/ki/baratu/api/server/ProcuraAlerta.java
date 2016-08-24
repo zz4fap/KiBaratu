@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import ki.baratu.api.server.Email;
 
 import ki.baratu.api.EMF;
 
@@ -190,9 +191,8 @@ public class ProcuraAlerta {
 					// Se preço cadastrado for menor do que o do alerta, então usuário deve ser alertado.
 					if(produto.getPreco() <= valor) {
 						
-						//TODO:
-						// Alertar cliente!!!!!!!!!
-						
+						// Alertar clientes!!!!!!!!!
+						Email.sendMail(alerta.getEmail());
 						
 					}
 				}
@@ -223,8 +223,8 @@ public class ProcuraAlerta {
 						
 						if(produto.getPreco() <= valor) {
 							
-							//TODO:
-							// Alertar cliente!!!!!!!!!
+							// Alertar clientes!!!!!!!!!
+							Email.sendMail(alerta.getEmail());
 							
 							
 						}
