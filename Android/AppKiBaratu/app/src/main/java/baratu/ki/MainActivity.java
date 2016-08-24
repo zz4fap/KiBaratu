@@ -23,6 +23,7 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
             case R.id.add_produto:
 
                 try {
-                    postProduct(4, "Feijao", "NovaPromo", 3.55);
+                    postProduto(7, "Fanta Uva", "Promoção da fanta uva", 10.5);
                 }
                 catch (Exception ex)
                 {}
@@ -78,17 +79,13 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public static boolean postProduct(Integer id, String nome, String observacao, Double preco) throws IOException
+    public boolean postRecurso(URL url)
     {
         HttpsURLConnection conn;
 
-//        Post URL
-//        https://1-dot-kibaratu-141212.appspot.com/_ah/api/produtosendpoint/v1/produtos/?id=3&nome=Macarrão&observacao=Promoção até domingo&preco=4.30
-
         try
         {
-            URL url = new URL("https://1-dot-kibaratu-141212.appspot.com/_ah/api/produtosendpoint/v1/produtos");
-
+            //Configura conexao
             conn = (HttpsURLConnection) url.openConnection();
 
             conn.setReadTimeout(10000);
@@ -96,53 +93,79 @@ public class MainActivity extends AppCompatActivity {
             conn.setRequestMethod("POST");
             conn.setDoInput(true);
             conn.setDoOutput(true);
-            conn.setRequestProperty("Accept", "application/json");
-            conn.setRequestProperty("Content-Type", "application/json; charset=UTF-8");
-            conn.connect();
+            conn.setRequestProperty("Content-Type", "application/json");
+            conn.setRequestProperty("Accept-Charset", "UTF-8");
 
-            Uri.Builder builder = new Uri.Builder()
-                .appendQueryParameter("id", id.toString())
-                .appendQueryParameter("nome", nome)
-                .appendQueryParameter("observacao", observacao)
-                .appendQueryParameter("preco", preco.toString());
-
-            String query = builder.build().getEncodedQuery();
-
-            Log.d(TAG, query);
-
-            //OutputStreamWriter writer = new OutputStreamWriter(conn.getOutputStream());
             OutputStream os = conn.getOutputStream();
             OutputStreamWriter writer = new OutputStreamWriter(os, "UTF-8");
 
-            //Sending data
-            writer.write(query);
+            //Envia dados
+            writer.write("");
             writer.flush();
             writer.close();
 
-            BufferedReader br = new BufferedReader(new InputStreamReader( conn.getInputStream(),"utf-8"));
+            int responseCode = conn.getResponseCode();
 
-            StringBuilder sb = new StringBuilder();
-            String line = null;
+            Log.d(TAG, "Response code: " + responseCode);
 
-            while ((line = br.readLine()) != null) {
-                sb.append(line + "\n");
+            //Verifica resposta do servidor
+            if (responseCode == HttpsURLConnection.HTTP_OK)
+            {
+                return true;
             }
-
-            br.close();
-
-            Log.d(TAG, "Response: " + sb.toString());
         }
         catch (Exception ex)
         {
             Log.d(TAG, ex.toString());
         }
-        finally
-        {
-            Log.d(TAG, "Finally");
-            //conn.disconnect();
-        }
 
-        return true;
+        return false;
+    }
+
+    public boolean postSupermercado(Integer id, String nome, String observacao, Double preco) throws IOException
+    {
+        //URL base do recurso Produtos
+        String url_base = "https://1-dot-kibaratu-141212.appspot.com/_ah/api/supermercadosendpoint/v1/supermercados/?";
+
+        //Montagem dos parametros
+        StringBuilder params = new StringBuilder();
+
+        params.append("id=" + id.toString());
+        params.append("&nome=" + URLEncoder.encode(nome, "UTF-8"));
+        params.append("&observacao=" + URLEncoder.encode(observacao, "UTF-8"));
+        params.append("&preco=" + preco.toString());
+
+        String encode_url = url_base + params.toString();
+
+        Log.d(TAG, "URL: " + encode_url);
+
+        //Converte a string para o padrao URL
+        URL url = new URL(encode_url);
+
+        return postRecurso(url);
+    }
+
+    public boolean postProduto(Integer id, String nome, String observacao, Double preco) throws IOException
+    {
+        //URL base do recurso Produtos
+        String url_base = "https://1-dot-kibaratu-141212.appspot.com/_ah/api/produtosendpoint/v1/produtos/?";
+
+        //Montagem dos parametros
+        StringBuilder params = new StringBuilder();
+
+        params.append("id=" + id.toString());
+        params.append("&nome=" + URLEncoder.encode(nome, "UTF-8"));
+        params.append("&observacao=" + URLEncoder.encode(observacao, "UTF-8"));
+        params.append("&preco=" + preco.toString());
+
+        String encode_url = url_base + params.toString();
+
+        Log.d(TAG, "URL: " + encode_url);
+
+        //Converte a string para o padrao URL
+        URL url = new URL(encode_url);
+
+        return postRecurso(url);
     }
 
     private void refreshListaProdutos()
