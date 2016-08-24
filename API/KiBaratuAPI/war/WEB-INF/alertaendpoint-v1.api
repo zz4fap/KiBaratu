@@ -2,7 +2,7 @@
   "extends" : "thirdParty.api",
   "abstract" : false,
   "root" : "https://kibaratu-141102.appspot.com/_ah/api",
-  "name" : "supermercadoendpoint",
+  "name" : "alertaendpoint",
   "version" : "v1",
   "defaultVersion" : false,
   "discovery" : [ "PUBLIC" ],
@@ -24,18 +24,18 @@
     "type" : "no-cache",
     "maxAge" : 0
   },
-  "ownerDomain" : "que.o",
-  "ownerName" : "que.o",
-  "packagePath" : "tem.de.barato.aqui.server",
+  "ownerDomain" : "baratu.ki",
+  "ownerName" : "baratu.ki",
+  "packagePath" : "api.server",
   "methods" : {
-    "supermercadoendpoint.insertSupermercado" : {
-      "path" : "supermercado",
+    "alertaendpoint.insertAlerta" : {
+      "path" : "alerta",
       "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.insertSupermercado",
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.insertAlerta",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -44,51 +44,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "supermercadoendpoint.updateSupermercado" : {
-      "path" : "supermercado",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.updateSupermercado",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "supermercadoendpoint.removeSupermercado" : {
-      "path" : "supermercado/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.removeSupermercado",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
-    "supermercadoendpoint.listSupermercado" : {
-      "path" : "supermercado",
+    "alertaendpoint.listAlerta" : {
+      "path" : "alerta",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.listSupermercado",
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.listAlerta",
       "request" : {
         "parameters" : {
           "cursor" : {
@@ -106,14 +69,14 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "supermercadoendpoint.getSupermercado" : {
-      "path" : "supermercado/{id}",
+    "alertaendpoint.getAlerta" : {
+      "path" : "alerta/{id}",
       "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.getSupermercado",
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.getAlerta",
       "request" : {
         "parameters" : {
           "id" : {
@@ -126,40 +89,81 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
+    },
+    "alertaendpoint.updateAlerta" : {
+      "path" : "alerta",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.updateAlerta",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "alertaendpoint.removeAlerta" : {
+      "path" : "alerta/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.removeAlerta",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
     }
   },
   "descriptor" : {
     "schemas" : {
-      "Supermercado" : {
-        "id" : "Supermercado",
+      "Alerta" : {
+        "id" : "Alerta",
         "type" : "object",
         "properties" : {
           "id" : {
             "type" : "string",
             "format" : "int64"
           },
-          "nome" : {
+          "nomeProduto" : {
             "type" : "string"
           },
-          "unidade" : {
+          "idProduto" : {
+            "type" : "string",
+            "format" : "int64"
+          },
+          "valorAlerta" : {
+            "type" : "number"
+          },
+          "email" : {
             "type" : "string"
           },
-          "endereco" : {
-            "type" : "string"
-          },
-          "localizacao" : {
+          "telefone" : {
             "type" : "string"
           }
         }
       },
-      "CollectionResponse_Supermercado" : {
-        "id" : "CollectionResponse_Supermercado",
+      "CollectionResponse_Alerta" : {
+        "id" : "CollectionResponse_Alerta",
         "type" : "object",
         "properties" : {
           "items" : {
             "type" : "array",
             "items" : {
-              "$ref" : "Supermercado"
+              "$ref" : "Alerta"
             }
           },
           "nextPageToken" : {
@@ -169,33 +173,33 @@
       }
     },
     "methods" : {
-      "ki.baratu.api.server.SupermercadoEndpoint.insertSupermercado" : {
+      "ki.baratu.api.server.AlertaEndpoint.insertAlerta" : {
         "request" : {
-          "$ref" : "Supermercado"
+          "$ref" : "Alerta"
         },
         "response" : {
-          "$ref" : "Supermercado"
+          "$ref" : "Alerta"
         }
       },
-      "ki.baratu.api.server.SupermercadoEndpoint.updateSupermercado" : {
+      "ki.baratu.api.server.AlertaEndpoint.listAlerta" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Alerta"
+        }
+      },
+      "ki.baratu.api.server.AlertaEndpoint.getAlerta" : {
+        "response" : {
+          "$ref" : "Alerta"
+        }
+      },
+      "ki.baratu.api.server.AlertaEndpoint.updateAlerta" : {
         "request" : {
-          "$ref" : "Supermercado"
+          "$ref" : "Alerta"
         },
         "response" : {
-          "$ref" : "Supermercado"
+          "$ref" : "Alerta"
         }
       },
-      "ki.baratu.api.server.SupermercadoEndpoint.removeSupermercado" : {
-      },
-      "ki.baratu.api.server.SupermercadoEndpoint.listSupermercado" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Supermercado"
-        }
-      },
-      "ki.baratu.api.server.SupermercadoEndpoint.getSupermercado" : {
-        "response" : {
-          "$ref" : "Supermercado"
-        }
+      "ki.baratu.api.server.AlertaEndpoint.removeAlerta" : {
       }
     }
   }

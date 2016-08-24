@@ -21,7 +21,7 @@
     <servlet-class>com.google.api.server.spi.SystemServiceServlet</servlet-class>
     <init-param>
       <param-name>services</param-name>
-      <param-value>ki.baratu.api.server.PesquisaProdutoEndpoint,ki.baratu.api.server.PesquisaSupermercadoEndpoint,ki.baratu.api.server.ProdutoEndpoint,ki.baratu.api.server.SupermercadoEndpoint</param-value>
+      <param-value>ki.baratu.api.server.AlertaEndpoint,ki.baratu.api.server.PesquisaProdutoEndpoint,ki.baratu.api.server.PesquisaSupermercadoEndpoint,ki.baratu.api.server.ProdutoEndpoint,ki.baratu.api.server.SupermercadoEndpoint</param-value>
     </init-param>
   </servlet>
 

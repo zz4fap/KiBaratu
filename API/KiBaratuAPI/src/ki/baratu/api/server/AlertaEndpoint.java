@@ -18,8 +18,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-@Api(name = "produtoendpoint", namespace = @ApiNamespace(ownerDomain = "que.o", ownerName = "que.o", packagePath = "tem.de.barato.aqui.server"))
-public class ProdutoEndpoint {
+@Api(name = "alertaendpoint", namespace = @ApiNamespace(ownerDomain = "baratu.ki", ownerName = "baratu.ki", packagePath = "api.server"))
+public class AlertaEndpoint {
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -29,17 +29,17 @@ public class ProdutoEndpoint {
 	 * persisted and a cursor to the next page.
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	@ApiMethod(name = "listProduto")
-	public CollectionResponse<Produto> listProduto(@Nullable @Named("cursor") String cursorString,
+	@ApiMethod(name = "listAlerta")
+	public CollectionResponse<Alerta> listAlerta(@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		EntityManager mgr = null;
 		Cursor cursor = null;
-		List<Produto> execute = null;
+		List<Alerta> execute = null;
 
 		try {
 			mgr = getEntityManager();
-			Query query = mgr.createQuery("select from Produto as Produto");
+			Query query = mgr.createQuery("select from Alerta as Alerta");
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				query.setHint(JPACursorHelper.CURSOR_HINT, cursor);
@@ -50,20 +50,20 @@ public class ProdutoEndpoint {
 				query.setMaxResults(limit);
 			}
 
-			execute = (List<Produto>) query.getResultList();
+			execute = (List<Alerta>) query.getResultList();
 			cursor = JPACursorHelper.getCursor(execute);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
-			for (Produto obj : execute)
+			for (Alerta obj : execute)
 				;
 		} finally {
 			mgr.close();
 		}
 
-		return CollectionResponse.<Produto>builder().setItems(execute).setNextPageToken(cursorString).build();
+		return CollectionResponse.<Alerta>builder().setItems(execute).setNextPageToken(cursorString).build();
 	}
 
 	/**
@@ -72,16 +72,16 @@ public class ProdutoEndpoint {
 	 * @param id the primary key of the java bean.
 	 * @return The entity with primary key id.
 	 */
-	@ApiMethod(name = "getProduto")
-	public Produto getProduto(@Named("id") Long id) {
+	@ApiMethod(name = "getAlerta")
+	public Alerta getAlerta(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
-		Produto produto = null;
+		Alerta alerta = null;
 		try {
-			produto = mgr.find(Produto.class, id);
+			alerta = mgr.find(Alerta.class, id);
 		} finally {
 			mgr.close();
 		}
-		return produto;
+		return alerta;
 	}
 
 	/**
@@ -89,25 +89,21 @@ public class ProdutoEndpoint {
 	 * exists in the datastore, an exception is thrown.
 	 * It uses HTTP POST method.
 	 *
-	 * @param produto the entity to be inserted.
+	 * @param alerta the entity to be inserted.
 	 * @return The inserted entity.
 	 */
-	@ApiMethod(name = "insertProduto")
-	public Produto insertProduto(Produto produto) {
+	@ApiMethod(name = "insertAlerta")
+	public Alerta insertAlerta(Alerta alerta) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (containsProduto(produto)) {
+			if (containsAlerta(alerta)) {
 				throw new EntityExistsException("Object already exists");
 			}
-			mgr.persist(produto);
-			
-			// TODO:
-			// Adicionar aqui código para verificar alertas!
-			
+			mgr.persist(alerta);
 		} finally {
 			mgr.close();
 		}
-		return produto;
+		return alerta;
 	}
 
 	/**
@@ -115,26 +111,21 @@ public class ProdutoEndpoint {
 	 * exist in the datastore, an exception is thrown.
 	 * It uses HTTP PUT method.
 	 *
-	 * @param produto the entity to be updated.
+	 * @param alerta the entity to be updated.
 	 * @return The updated entity.
 	 */
-	@ApiMethod(name = "updateProduto")
-	public Produto updateProduto(Produto produto) {
+	@ApiMethod(name = "updateAlerta")
+	public Alerta updateAlerta(Alerta alerta) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (!containsProduto(produto)) {
+			if (!containsAlerta(alerta)) {
 				throw new EntityNotFoundException("Object does not exist");
 			}
-			mgr.persist(produto);
-			
-			// TODO:
-			// Adicionar aqui código para verificar alertas!
-			
-			
+			mgr.persist(alerta);
 		} finally {
 			mgr.close();
 		}
-		return produto;
+		return alerta;
 	}
 
 	/**
@@ -143,22 +134,22 @@ public class ProdutoEndpoint {
 	 *
 	 * @param id the primary key of the entity to be deleted.
 	 */
-	@ApiMethod(name = "removeProduto")
-	public void removeProduto(@Named("id") Long id) {
+	@ApiMethod(name = "removeAlerta")
+	public void removeAlerta(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
 		try {
-			Produto produto = mgr.find(Produto.class, id);
-			mgr.remove(produto);
+			Alerta alerta = mgr.find(Alerta.class, id);
+			mgr.remove(alerta);
 		} finally {
 			mgr.close();
 		}
 	}
 
-	private boolean containsProduto(Produto produto) {
+	private boolean containsAlerta(Alerta alerta) {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Produto item = mgr.find(Produto.class, produto.getId());
+			Alerta item = mgr.find(Alerta.class, alerta.getId());
 			if (item == null) {
 				contains = false;
 			}
