@@ -1,0 +1,32 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/refresh_list"
+        android:title="@string/menu_refresh_list"
+        android:icon="@mipmap/ic_action_reload"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/add_item"
+        android:title="@string/menu_add_item"
+        android:icon="@mipmap/ic_action_add"
+        app:showAsAction="ifRoom">
+
+        <menu>
+            <item
+                android:id="@+id/add_supermercado"
+                android:title="@string/menu_add_supermercado"
+                app:showAsAction="ifRoom" />
+
+            <item
+                android:id="@+id/add_produto"
+                android:title="@string/menu_add_produto"
+                app:showAsAction="ifRoom" />
+
+        </menu>
+
+    </item>
+
+
+</menu>

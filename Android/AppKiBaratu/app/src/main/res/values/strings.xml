@@ -1,0 +1,13 @@
+<resources>
+    <!-- String App Title -->
+    <string name="app_name">KiBaratu</string>
+
+    <!-- Strings Menu Main -->
+    <string name="menu_add_item">Adicionar</string>
+    <string name="menu_add_supermercado">Supermercado</string>
+    <string name="menu_add_produto">Produto</string>
+    <string name="menu_refresh_list">Atualizar</string>
+
+    <!-- String MainActivity -->
+    <string name="lista_produtos">Lista de Produtos</string>
+</resources>
