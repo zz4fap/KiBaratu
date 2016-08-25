@@ -1,5 +1,7 @@
 package ki.baratu.api.server;
 
+import java.util.Collection;
+
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
@@ -12,6 +14,8 @@ public class Supermercado {
 	private String unidade;
 	private String endereco;
 	private String localizacao;
+	
+	private Collection<Produto> produtos;
 	
 	public Long getId() {
 		return id;
@@ -42,6 +46,16 @@ public class Supermercado {
 	}
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
+	}
+	
+	public void addProduto(Produto produto)
+	{
+		this.produtos.add(produto);
+	}
+	
+	public void delProduto(Produto produto)
+	{
+		this.produtos.remove(produto);
 	}
 
 }

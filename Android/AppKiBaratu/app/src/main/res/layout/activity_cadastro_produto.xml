@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="baratu.ki.CadastroProdutoActivity">
+
+    <TextView
+        android:id="@+id/textCadastroProduto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@color/colorBackTitle"
+        android:textColor="@color/colorFontTitle"
+        android:text="@string/titulo_cadastro_produto"
+        android:gravity="center" />
+
+    <!--Nome-->
+    <EditText
+        android:id="@+id/editNome"
+        android:hint="Nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text|textCapSentences"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/textCadastroProduto" />
+
+    <!--Marca-->
+    <EditText
+        android:id="@+id/editMarca"
+        android:hint="Marca"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text|textCapSentences"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/editNome" />
+
+    <!--Preco-->
+    <EditText
+        android:id="@+id/editPreco"
+        android:hint="Preço"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/editMarca"
+        android:inputType="numberDecimal"
+        android:ems="10" />
+
+    <!--Supermercado-->
+    <TextView
+        android:id="@+id/textSupermercado"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Supermercado: "
+        android:layout_below="@+id/editPreco"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/spinnerSupermercado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textSupermercado"
+        style="@style/spinner_style"
+    />
+
+    <Button
+        android:id="@+id/btnSalvar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="78dp"
+        android:background="@color/colorAzulClaro"
+        android:text="Salvar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>

@@ -18,8 +18,8 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-@Api(name = "supermercadoendpoint", namespace = @ApiNamespace(ownerDomain = "que.o", ownerName = "que.o", packagePath = "tem.de.barato.aqui.server"))
-public class SupermercadoEndpoint {
+@Api(name = "alertaendpoint", namespace = @ApiNamespace(ownerDomain = "baratu.ki", ownerName = "baratu.ki", packagePath = "api.server"))
+public class AlertaEndpoint {
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -29,17 +29,17 @@ public class SupermercadoEndpoint {
 	 * persisted and a cursor to the next page.
 	 */
 	@SuppressWarnings({ "unchecked", "unused" })
-	@ApiMethod(name = "listSupermercado")
-	public CollectionResponse<Supermercado> listSupermercado(@Nullable @Named("cursor") String cursorString,
+	@ApiMethod(name = "listAlerta")
+	public CollectionResponse<Alerta> listAlerta(@Nullable @Named("cursor") String cursorString,
 			@Nullable @Named("limit") Integer limit) {
 
 		EntityManager mgr = null;
 		Cursor cursor = null;
-		List<Supermercado> execute = null;
+		List<Alerta> execute = null;
 
 		try {
 			mgr = getEntityManager();
-			Query query = mgr.createQuery("select from Supermercado as Supermercado");
+			Query query = mgr.createQuery("select from Alerta as Alerta");
 			if (cursorString != null && cursorString != "") {
 				cursor = Cursor.fromWebSafeString(cursorString);
 				query.setHint(JPACursorHelper.CURSOR_HINT, cursor);
@@ -50,20 +50,20 @@ public class SupermercadoEndpoint {
 				query.setMaxResults(limit);
 			}
 
-			execute = (List<Supermercado>) query.getResultList();
+			execute = (List<Alerta>) query.getResultList();
 			cursor = JPACursorHelper.getCursor(execute);
 			if (cursor != null)
 				cursorString = cursor.toWebSafeString();
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
-			for (Supermercado obj : execute)
+			for (Alerta obj : execute)
 				;
 		} finally {
 			mgr.close();
 		}
 
-		return CollectionResponse.<Supermercado>builder().setItems(execute).setNextPageToken(cursorString).build();
+		return CollectionResponse.<Alerta>builder().setItems(execute).setNextPageToken(cursorString).build();
 	}
 
 	/**
@@ -72,16 +72,16 @@ public class SupermercadoEndpoint {
 	 * @param id the primary key of the java bean.
 	 * @return The entity with primary key id.
 	 */
-	@ApiMethod(name = "getSupermercado")
-	public Supermercado getSupermercado(@Named("id") Long id) {
+	@ApiMethod(name = "getAlerta")
+	public Alerta getAlerta(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
-		Supermercado supermercado = null;
+		Alerta alerta = null;
 		try {
-			supermercado = mgr.find(Supermercado.class, id);
+			alerta = mgr.find(Alerta.class, id);
 		} finally {
 			mgr.close();
 		}
-		return supermercado;
+		return alerta;
 	}
 
 	/**
@@ -89,21 +89,21 @@ public class SupermercadoEndpoint {
 	 * exists in the datastore, an exception is thrown.
 	 * It uses HTTP POST method.
 	 *
-	 * @param supermercado the entity to be inserted.
+	 * @param alerta the entity to be inserted.
 	 * @return The inserted entity.
 	 */
-	@ApiMethod(name = "insertSupermercado")
-	public Supermercado insertSupermercado(Supermercado supermercado) {
+	@ApiMethod(name = "insertAlerta")
+	public Alerta insertAlerta(Alerta alerta) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (containsSupermercado(supermercado)) {
+			if (containsAlerta(alerta)) {
 				throw new EntityExistsException("Object already exists");
 			}
-			mgr.persist(supermercado);
+			mgr.persist(alerta);
 		} finally {
 			mgr.close();
 		}
-		return supermercado;
+		return alerta;
 	}
 
 	/**
@@ -111,21 +111,21 @@ public class SupermercadoEndpoint {
 	 * exist in the datastore, an exception is thrown.
 	 * It uses HTTP PUT method.
 	 *
-	 * @param supermercado the entity to be updated.
+	 * @param alerta the entity to be updated.
 	 * @return The updated entity.
 	 */
-	@ApiMethod(name = "updateSupermercado")
-	public Supermercado updateSupermercado(Supermercado supermercado) {
+	@ApiMethod(name = "updateAlerta")
+	public Alerta updateAlerta(Alerta alerta) {
 		EntityManager mgr = getEntityManager();
 		try {
-			if (!containsSupermercado(supermercado)) {
+			if (!containsAlerta(alerta)) {
 				throw new EntityNotFoundException("Object does not exist");
 			}
-			mgr.persist(supermercado);
+			mgr.persist(alerta);
 		} finally {
 			mgr.close();
 		}
-		return supermercado;
+		return alerta;
 	}
 
 	/**
@@ -134,50 +134,22 @@ public class SupermercadoEndpoint {
 	 *
 	 * @param id the primary key of the entity to be deleted.
 	 */
-	@ApiMethod(name = "removeSupermercado")
-	public void removeSupermercado(@Named("id") Long id) {
+	@ApiMethod(name = "removeAlerta")
+	public void removeAlerta(@Named("id") Long id) {
 		EntityManager mgr = getEntityManager();
 		try {
-			Supermercado supermercado = mgr.find(Supermercado.class, id);
-			mgr.remove(supermercado);
+			Alerta alerta = mgr.find(Alerta.class, id);
+			mgr.remove(alerta);
 		} finally {
 			mgr.close();
 		}
 	}
 
-	
-
-	@ApiMethod(name = "addSupermercadoProduto")
-	public void addSupermercadoProduto(@Named("id") Long id, Produto produto) {
-		EntityManager mgr = getEntityManager();
-		try {
-			Supermercado supermercado = mgr.find(Supermercado.class, id);
-			supermercado.addProduto(produto);
-			mgr.persist(supermercado);
-		} finally {
-			mgr.close();
-		}
-	}
-	
-
-	@ApiMethod(name = "delSupermercadoProduto")
-	public void delSupermercadoProduto(@Named("id") Long id, Produto produto) {
-		EntityManager mgr = getEntityManager();
-		try {
-			Supermercado supermercado = mgr.find(Supermercado.class, id);
-			supermercado.delProduto(produto);
-			mgr.persist(supermercado);
-		} finally {
-			mgr.close();
-		}
-	}
-	
-	
-	private boolean containsSupermercado(Supermercado supermercado) {
+	private boolean containsAlerta(Alerta alerta) {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
-			Supermercado item = mgr.find(Supermercado.class, supermercado.getId());
+			Alerta item = mgr.find(Alerta.class, alerta.getId());
 			if (item == null) {
 				contains = false;
 			}

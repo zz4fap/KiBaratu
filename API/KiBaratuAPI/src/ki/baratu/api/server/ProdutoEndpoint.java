@@ -100,6 +100,11 @@ public class ProdutoEndpoint {
 				throw new EntityExistsException("Object already exists");
 			}
 			mgr.persist(produto);
+			
+			// TODO:
+			// Adicionar aqui código para verificar alertas!
+			ProcuraAlerta.findAlertaPorIdProduto(produto);
+			
 		} finally {
 			mgr.close();
 		}
@@ -122,6 +127,12 @@ public class ProdutoEndpoint {
 				throw new EntityNotFoundException("Object does not exist");
 			}
 			mgr.persist(produto);
+			
+			// TODO:
+			// Adicionar aqui código para verificar alertas!
+			ProcuraAlerta.findAlertaPorIdProduto(produto);
+			
+			
 		} finally {
 			mgr.close();
 		}

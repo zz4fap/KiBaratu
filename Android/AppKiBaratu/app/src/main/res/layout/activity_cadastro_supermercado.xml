@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="baratu.ki.CadastroProdutoActivity">
+
+    <TextView
+        android:id="@+id/textCadastroSupermercado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="2dp"
+        android:paddingBottom="2dp"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:background="@color/colorBackTitle"
+        android:textColor="@color/colorFontTitle"
+        android:text="@string/titulo_cadastro_supermercado"
+        android:gravity="center" />
+
+    <!--Nome-->
+    <EditText
+        android:id="@+id/editNomeSupermercado"
+        android:hint="Nome"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text|textCapSentences"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/textCadastroSupermercado" />
+
+    <!--Unidade-->
+    <EditText
+        android:id="@+id/editUnidade"
+        android:hint="Unidade"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text|textCapSentences"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/editNomeSupermercado" />
+
+    <!--Endereco-->
+    <EditText
+        android:id="@+id/editEndereco"
+        android:hint="Endereco"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text|textCapSentences"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/editUnidade" />
+
+    <!--Localizacao-->
+    <EditText
+        android:id="@+id/editLocalizacao"
+        android:hint="Localizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="20dp"
+        android:maxLines="1"
+        android:scrollHorizontally="true"
+        android:inputType="text|textCapSentences"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:layout_below="@+id/editEndereco"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/btnSalvarSupermercado"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:height="78dp"
+        android:background="@color/colorAzulClaro"
+        android:text="Salvar"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentEnd="true" />
+
+</RelativeLayout>
