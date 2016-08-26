@@ -15,7 +15,7 @@ public class Supermercado {
 	private String endereco;
 	private String localizacao;
 	
-	private Collection<Produto> produtos;
+	//private Collection<Produto> produtos;
 	
 	public Long getId() {
 		return id;
@@ -48,14 +48,14 @@ public class Supermercado {
 		this.localizacao = localizacao;
 	}
 	
-	public void addProduto(Produto produto)
-	{
-		this.produtos.add(produto);
-	}
-	
-	public void delProduto(Produto produto)
-	{
-		this.produtos.remove(produto);
-	}
+//	public void addProduto(Produto produto)
+//	{
+//		this.produtos.add(produto);
+//	}
+//	
+//	public void delProduto(Produto produto)
+//	{
+//		this.produtos.remove(produto);
+//	}
 
 }

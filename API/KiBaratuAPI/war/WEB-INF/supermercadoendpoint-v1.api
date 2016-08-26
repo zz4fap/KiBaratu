@@ -28,59 +28,6 @@
   "ownerName" : "que.o",
   "packagePath" : "tem.de.barato.aqui.server",
   "methods" : {
-    "supermercadoendpoint.insertSupermercado" : {
-      "path" : "supermercado",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.insertSupermercado",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "supermercadoendpoint.updateSupermercado" : {
-      "path" : "supermercado",
-      "httpMethod" : "PUT",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.updateSupermercado",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "supermercadoendpoint.removeSupermercado" : {
-      "path" : "supermercado/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.removeSupermercado",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
-      }
-    },
     "supermercadoendpoint.listSupermercado" : {
       "path" : "supermercado",
       "httpMethod" : "GET",
@@ -126,10 +73,78 @@
       "response" : {
         "body" : "autoTemplate(backendResponse)"
       }
+    },
+    "supermercadoendpoint.updateSupermercado" : {
+      "path" : "supermercado",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.updateSupermercado",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "supermercadoendpoint.insertSupermercado" : {
+      "path" : "supermercado",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.insertSupermercado",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "supermercadoendpoint.removeSupermercado" : {
+      "path" : "supermercado/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.SupermercadoEndpoint.removeSupermercado",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
     }
   },
   "descriptor" : {
     "schemas" : {
+      "CollectionResponse_Supermercado" : {
+        "id" : "CollectionResponse_Supermercado",
+        "type" : "object",
+        "properties" : {
+          "items" : {
+            "type" : "array",
+            "items" : {
+              "$ref" : "Supermercado"
+            }
+          },
+          "nextPageToken" : {
+            "type" : "string"
+          }
+        }
+      },
       "Supermercado" : {
         "id" : "Supermercado",
         "type" : "object",
@@ -151,28 +166,15 @@
             "type" : "string"
           }
         }
-      },
-      "CollectionResponse_Supermercado" : {
-        "id" : "CollectionResponse_Supermercado",
-        "type" : "object",
-        "properties" : {
-          "items" : {
-            "type" : "array",
-            "items" : {
-              "$ref" : "Supermercado"
-            }
-          },
-          "nextPageToken" : {
-            "type" : "string"
-          }
-        }
       }
     },
     "methods" : {
-      "ki.baratu.api.server.SupermercadoEndpoint.insertSupermercado" : {
-        "request" : {
-          "$ref" : "Supermercado"
-        },
+      "ki.baratu.api.server.SupermercadoEndpoint.listSupermercado" : {
+        "response" : {
+          "$ref" : "CollectionResponse_Supermercado"
+        }
+      },
+      "ki.baratu.api.server.SupermercadoEndpoint.getSupermercado" : {
         "response" : {
           "$ref" : "Supermercado"
         }
@@ -185,17 +187,15 @@
           "$ref" : "Supermercado"
         }
       },
-      "ki.baratu.api.server.SupermercadoEndpoint.removeSupermercado" : {
-      },
-      "ki.baratu.api.server.SupermercadoEndpoint.listSupermercado" : {
-        "response" : {
-          "$ref" : "CollectionResponse_Supermercado"
-        }
-      },
-      "ki.baratu.api.server.SupermercadoEndpoint.getSupermercado" : {
+      "ki.baratu.api.server.SupermercadoEndpoint.insertSupermercado" : {
+        "request" : {
+          "$ref" : "Supermercado"
+        },
         "response" : {
           "$ref" : "Supermercado"
         }
+      },
+      "ki.baratu.api.server.SupermercadoEndpoint.removeSupermercado" : {
       }
     }
   }

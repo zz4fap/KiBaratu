@@ -1,8 +1,9 @@
 package ki.baratu.api.server;
 
-import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Properties;
+import java.util.logging.Logger;
+
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -36,20 +37,50 @@ public class Email {
 	public static void sendMail(String email) {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
+		Logger log = Logger.getLogger(ProcuraAlerta.class.getName());
+		
+		log.info("sendMail...");
 
 		try {
 			Message msg = new MimeMessage(session);
-			msg.setFrom(new InternetAddress("admin@example.com", "Example.com Admin"));
-			msg.addRecipient(Message.RecipientType.TO,
-					new InternetAddress(email, "Mr. User"));
-			msg.setSubject("Seu alerta foi atingido!!");
+			msg.setFrom(new InternetAddress("zz4fap@gmail.com"));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			msg.setSubject("O preço do seu alerta foi atingido!!");
+			msg.setText("Alerta atingido!");
 			Transport.send(msg);
+			
+			log.info("Email enviado para: "+email);
 		} catch (AddressException e) {
-			// ...
+			log.info("AddressException");
+			log.info(e.getMessage());
 		} catch (MessagingException e) {
-			// ...
-		} catch (UnsupportedEncodingException e) {
-			// ...
+			log.info("MessagingException");
+			log.info(e.getMessage());
+		}
+	}
+	
+	public static void sendMail(String email, Produto produto, Supermercado supermercado) {
+		Properties props = new Properties();
+		Session session = Session.getDefaultInstance(props, null);
+		Logger log = Logger.getLogger(ProcuraAlerta.class.getName());
+		
+		log.info("sendMail...");
+
+		try {
+			Message msg = new MimeMessage(session);
+			msg.setFrom(new InternetAddress("zz4fap@gmail.com"));
+			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
+			msg.setSubject("O preco do seu alerta foi atingido!!");
+			msg.setText("O produto: "+produto.getNome()+" está com preço de R$ "+produto.getPreco()+" no supermercado "+supermercado.getNome()+" - Unidade: "+supermercado.getUnidade()+"\n Endereço: "+supermercado.getEndereco());
+			Transport.send(msg);
+			
+			log.info("Email enviado para: "+email);
+		} catch (AddressException e) {
+			log.info("AddressException");
+			log.info(e.getMessage());
+		} catch (MessagingException e) {
+			log.info("MessagingException");
+			log.info(e.getMessage());
 		}
 	}
 

@@ -147,30 +147,30 @@ public class SupermercadoEndpoint {
 
 	
 
-	@ApiMethod(name = "addSupermercadoProduto")
-	public void addSupermercadoProduto(@Named("id") Long id, Produto produto) {
-		EntityManager mgr = getEntityManager();
-		try {
-			Supermercado supermercado = mgr.find(Supermercado.class, id);
-			supermercado.addProduto(produto);
-			mgr.persist(supermercado);
-		} finally {
-			mgr.close();
-		}
-	}
-	
-
-	@ApiMethod(name = "delSupermercadoProduto")
-	public void delSupermercadoProduto(@Named("id") Long id, Produto produto) {
-		EntityManager mgr = getEntityManager();
-		try {
-			Supermercado supermercado = mgr.find(Supermercado.class, id);
-			supermercado.delProduto(produto);
-			mgr.persist(supermercado);
-		} finally {
-			mgr.close();
-		}
-	}
+//	@ApiMethod(name = "addSupermercadoProduto")
+//	public void addSupermercadoProduto(@Named("id") Long id, Produto produto) {
+//		EntityManager mgr = getEntityManager();
+//		try {
+//			Supermercado supermercado = mgr.find(Supermercado.class, id);
+//			supermercado.addProduto(produto);
+//			mgr.persist(supermercado);
+//		} finally {
+//			mgr.close();
+//		}
+//	}
+//	
+//
+//	@ApiMethod(name = "delSupermercadoProduto")
+//	public void delSupermercadoProduto(@Named("id") Long id, Produto produto) {
+//		EntityManager mgr = getEntityManager();
+//		try {
+//			Supermercado supermercado = mgr.find(Supermercado.class, id);
+//			supermercado.delProduto(produto);
+//			mgr.persist(supermercado);
+//		} finally {
+//			mgr.close();
+//		}
+//	}
 	
 	
 	private boolean containsSupermercado(Supermercado supermercado) {

@@ -10,6 +10,7 @@ import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 import javax.inject.Named;
@@ -20,6 +21,12 @@ import javax.persistence.Query;
 
 @Api(name = "produtoendpoint", namespace = @ApiNamespace(ownerDomain = "que.o", ownerName = "que.o", packagePath = "tem.de.barato.aqui.server"))
 public class ProdutoEndpoint {
+	
+	private Logger log;
+	
+	public ProdutoEndpoint() {
+		  log = Logger.getLogger(ProdutoEndpoint.class.getName());
+	}
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -103,7 +110,7 @@ public class ProdutoEndpoint {
 			
 			// TODO:
 			// Adicionar aqui código para verificar alertas!
-			ProcuraAlerta.findAlertaPorIdProduto(produto);
+			ProcuraAlerta.findAlertaPorNomeProduto(produto);
 			
 		} finally {
 			mgr.close();
@@ -130,8 +137,7 @@ public class ProdutoEndpoint {
 			
 			// TODO:
 			// Adicionar aqui código para verificar alertas!
-			ProcuraAlerta.findAlertaPorIdProduto(produto);
-			
+			ProcuraAlerta.findAlertaPorNomeProduto(produto);		
 			
 		} finally {
 			mgr.close();

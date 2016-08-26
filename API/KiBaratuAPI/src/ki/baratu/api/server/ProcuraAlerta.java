@@ -1,9 +1,11 @@
 package ki.baratu.api.server;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import ki.baratu.api.server.Email;
 
 import ki.baratu.api.EMF;
 
@@ -90,7 +92,7 @@ public class ProcuraAlerta {
 		return produtos;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unused", "unchecked" })
 	private static List<Alerta> getAlertasByProductId(Long id) {
 		EntityManager mgr = null;
 		List<Alerta> alertas = null;
@@ -113,10 +115,11 @@ public class ProcuraAlerta {
 		return alertas;
 	}
 	
-	@SuppressWarnings("unchecked")
+	@SuppressWarnings({ "unused", "unchecked" })
 	private static List<Alerta> getAlertasByProductName(String nome) {
 		EntityManager mgr = null;
 		List<Alerta> alertas = null;
+		Logger log = Logger.getLogger(ProcuraAlerta.class.getName());
 
 		try {
 			mgr = getEntityManager();
@@ -124,11 +127,14 @@ public class ProcuraAlerta {
 
 			query = mgr.createQuery("select p from Alerta p where p.nomeProduto = :nomeProduto", Alerta.class);
 			query.setParameter("nomeProduto", nome);		
-			alertas = (List<Alerta>) query.getResultList();
+			alertas = (List<Alerta>) query.getResultList();	
 
 			// Tight loop for fetching all entities from datastore and accomodate
 			// for lazy fetch.
 			for (Alerta obj : alertas);
+			
+			log.info("Number of alertas: "+alertas.size());
+			
 		} finally {
 			mgr.close();
 		}
@@ -158,19 +164,32 @@ public class ProcuraAlerta {
 	
 	static void findAlertaPorNomeProduto(Produto produto) {
 		
+		Logger log = Logger.getLogger(ProcuraAlerta.class.getName());
+		
 		String nome = produto.getNome();
 		Double preco = produto.getPreco();
 		
 		List<Alerta> alertas = getAlertasByProductName(nome);
 		
+		log.info("Number of alertas: "+alertas.size());
+		
 		for(Alerta alerta : alertas) {
 			
 			if(preco <= alerta.getValorAlerta()) {
 				
+				log.info("Preco cadastrado: "+preco+" - Preco alerta: "+alerta.getValorAlerta());
+				
+				Supermercado supermercado = getSupermercadoById(produto.getSupermercadoId());
+				
+				if(supermercado!=null)
+					log.info("Supermercado: "+supermercado.getNome());
+				else
+					log.info("Supermercado retornou null!!!!!");
+				
 				//TODO:
 				// Notificar cada um dos usuarios com alertas.
 				// Alertar clientes!!!!!!!!!
-				Email.sendMail(alerta.getEmail());
+				Email.sendMail(alerta.getEmail(), produto, supermercado);
 				
 			}
 		}		
@@ -190,10 +209,10 @@ public class ProcuraAlerta {
 				
 				Produto produto = getProdutoById(id);
 				
-				// Se pesquisa retorna um produto, ent√£o verificar pre√ßo.
+				// Se pesquisa retorna um produto, ent„o verificar preÁo.
 				if(produto != null) {
 					
-					// Se pre√ßo cadastrado for menor do que o do alerta, ent√£o usu√°rio deve ser alertado.
+					// Se preÁo cadastrado for menor do que o do alerta, ent„o usu·rio deve ser alertado.
 					if(produto.getPreco() <= valor) {
 						
 						// Alertar clientes!!!!!!!!!
@@ -219,10 +238,10 @@ public class ProcuraAlerta {
 				
 				List<Produto> produtos = getProdutosByName(nome);
 				
-				// Se pesquisa retorna um produto, ent√£o verificar pre√ßo.
+				// Se pesquisa retorna um produto, ent„o verificar preÁo.
 				if(produtos != null) {
 					
-					// Se pre√ßo cadastrado for menor do que o do alerta, ent√£o usu√°rio deve ser alertado.
+					// Se preÁo cadastrado for menor do que o do alerta, ent„o usu·rio deve ser alertado.
 					
 					for(Produto produto : produtos) {
 						
@@ -237,6 +256,20 @@ public class ProcuraAlerta {
 				}
 			}
 		}
+	}
+	
+	private static Supermercado getSupermercadoById(Long id) {
+		EntityManager mgr = getEntityManager();
+		Supermercado supermercado = null;
+		Logger log = Logger.getLogger(ProcuraAlerta.class.getName());
+		
+		try {
+			supermercado = mgr.find(Supermercado.class, id);
+			log.info("Supermercado encontrado!!");
+		} finally {
+			mgr.close();
+		}
+		return supermercado;
 	}
 
 	private static EntityManager getEntityManager() {
