@@ -1,7 +1,5 @@
 package ki.baratu.api.server;
 
-import java.util.Collection;
-
 import javax.persistence.Entity;
 import javax.persistence.Id;
 

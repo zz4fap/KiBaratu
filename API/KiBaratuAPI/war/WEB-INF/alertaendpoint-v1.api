@@ -28,17 +28,22 @@
   "ownerName" : "baratu.ki",
   "packagePath" : "api.server",
   "methods" : {
-    "alertaendpoint.updateAlerta" : {
-      "path" : "alerta",
-      "httpMethod" : "PUT",
+    "alertaendpoint.getAlerta" : {
+      "path" : "alerta/{id}",
+      "httpMethod" : "GET",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.updateAlerta",
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.getAlerta",
       "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -69,43 +74,6 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "alertaendpoint.insertAlerta" : {
-      "path" : "alerta",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.insertAlerta",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "alertaendpoint.getAlerta" : {
-      "path" : "alerta/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.getAlerta",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "alertaendpoint.removeAlerta" : {
       "path" : "alerta/{id}",
       "httpMethod" : "DELETE",
@@ -125,6 +93,38 @@
       },
       "response" : {
         "body" : "empty"
+      }
+    },
+    "alertaendpoint.insertAlerta" : {
+      "path" : "alerta",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.insertAlerta",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "alertaendpoint.updateAlerta" : {
+      "path" : "alerta",
+      "httpMethod" : "PUT",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.updateAlerta",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -173,10 +173,7 @@
       }
     },
     "methods" : {
-      "ki.baratu.api.server.AlertaEndpoint.updateAlerta" : {
-        "request" : {
-          "$ref" : "Alerta"
-        },
+      "ki.baratu.api.server.AlertaEndpoint.getAlerta" : {
         "response" : {
           "$ref" : "Alerta"
         }
@@ -186,6 +183,8 @@
           "$ref" : "CollectionResponse_Alerta"
         }
       },
+      "ki.baratu.api.server.AlertaEndpoint.removeAlerta" : {
+      },
       "ki.baratu.api.server.AlertaEndpoint.insertAlerta" : {
         "request" : {
           "$ref" : "Alerta"
@@ -194,12 +193,13 @@
           "$ref" : "Alerta"
         }
       },
-      "ki.baratu.api.server.AlertaEndpoint.getAlerta" : {
+      "ki.baratu.api.server.AlertaEndpoint.updateAlerta" : {
+        "request" : {
+          "$ref" : "Alerta"
+        },
         "response" : {
           "$ref" : "Alerta"
         }
-      },
-      "ki.baratu.api.server.AlertaEndpoint.removeAlerta" : {
       }
     }
   }

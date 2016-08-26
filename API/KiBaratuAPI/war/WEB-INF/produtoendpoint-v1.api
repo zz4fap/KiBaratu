@@ -28,6 +28,27 @@
   "ownerName" : "que.o",
   "packagePath" : "tem.de.barato.aqui.server",
   "methods" : {
+    "produtoendpoint.removeProduto" : {
+      "path" : "produto/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.removeProduto",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "produtoendpoint.listProduto" : {
       "path" : "produto",
       "httpMethod" : "GET",
@@ -48,6 +69,22 @@
           }
         },
         "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "produtoendpoint.insertProduto" : {
+      "path" : "produto",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.insertProduto",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -88,43 +125,6 @@
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "produtoendpoint.insertProduto" : {
-      "path" : "produto",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.insertProduto",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "produtoendpoint.removeProduto" : {
-      "path" : "produto/{id}",
-      "httpMethod" : "DELETE",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.removeProduto",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "empty"
       }
     }
   },
@@ -179,9 +179,19 @@
       }
     },
     "methods" : {
+      "ki.baratu.api.server.ProdutoEndpoint.removeProduto" : {
+      },
       "ki.baratu.api.server.ProdutoEndpoint.listProduto" : {
         "response" : {
           "$ref" : "CollectionResponse_Produto"
+        }
+      },
+      "ki.baratu.api.server.ProdutoEndpoint.insertProduto" : {
+        "request" : {
+          "$ref" : "Produto"
+        },
+        "response" : {
+          "$ref" : "Produto"
         }
       },
       "ki.baratu.api.server.ProdutoEndpoint.getProduto" : {
@@ -196,16 +206,6 @@
         "response" : {
           "$ref" : "Produto"
         }
-      },
-      "ki.baratu.api.server.ProdutoEndpoint.insertProduto" : {
-        "request" : {
-          "$ref" : "Produto"
-        },
-        "response" : {
-          "$ref" : "Produto"
-        }
-      },
-      "ki.baratu.api.server.ProdutoEndpoint.removeProduto" : {
       }
     }
   }
