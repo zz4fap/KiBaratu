@@ -28,7 +28,7 @@ public class Email {
 		} catch (AddressException e) {
 			// ...
 		} catch (MessagingException e) {
-			// ...
+			// ...sendMail
 		} catch (UnsupportedEncodingException e) {
 			// ...
 		}
@@ -45,7 +45,7 @@ public class Email {
 			Message msg = new MimeMessage(session);
 			msg.setFrom(new InternetAddress("zz4fap@gmail.com"));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
-			msg.setSubject("O preço do seu alerta foi atingido!!");
+			msg.setSubject("O preÃ§o do seu alerta foi atingido!!");
 			msg.setText("Alerta atingido!");
 			Transport.send(msg);
 			
@@ -59,7 +59,7 @@ public class Email {
 		}
 	}
 	
-	public static void sendMail(String email, Produto produto, Supermercado supermercado) {
+	public static void sendMail(String email, Produto produto) {
 		Properties props = new Properties();
 		Session session = Session.getDefaultInstance(props, null);
 		Logger log = Logger.getLogger(ProcuraAlerta.class.getName());
@@ -71,7 +71,7 @@ public class Email {
 			msg.setFrom(new InternetAddress("zz4fap@gmail.com"));
 			msg.addRecipient(Message.RecipientType.TO, new InternetAddress(email));
 			msg.setSubject("O preco do seu alerta foi atingido!!");
-			msg.setText("O produto: "+produto.getNome()+" está com preço de R$ "+produto.getPreco()+" no supermercado "+supermercado.getNome()+" - Unidade: "+supermercado.getUnidade()+"\n Endereço: "+supermercado.getEndereco());
+			msg.setText("O produto: "+produto.getNome()+" estÃ¡ com preÃ§o de R$ "+produto.getPreco());
 			Transport.send(msg);
 			
 			log.info("Email enviado para: "+email);

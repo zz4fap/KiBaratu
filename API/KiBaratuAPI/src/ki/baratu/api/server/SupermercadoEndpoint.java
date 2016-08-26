@@ -18,7 +18,7 @@ import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
-@Api(name = "supermercadoendpoint", namespace = @ApiNamespace(ownerDomain = "que.o", ownerName = "que.o", packagePath = "tem.de.barato.aqui.server"))
+@Api(name = "supermercadoendpoint", namespace = @ApiNamespace(ownerDomain = "baratu.ki", ownerName = "baratu.ki", packagePath = "api.server"))
 public class SupermercadoEndpoint {
 
 	/**
@@ -145,38 +145,13 @@ public class SupermercadoEndpoint {
 		}
 	}
 
-	
-
-//	@ApiMethod(name = "addSupermercadoProduto")
-//	public void addSupermercadoProduto(@Named("id") Long id, Produto produto) {
-//		EntityManager mgr = getEntityManager();
-//		try {
-//			Supermercado supermercado = mgr.find(Supermercado.class, id);
-//			supermercado.addProduto(produto);
-//			mgr.persist(supermercado);
-//		} finally {
-//			mgr.close();
-//		}
-//	}
-//	
-//
-//	@ApiMethod(name = "delSupermercadoProduto")
-//	public void delSupermercadoProduto(@Named("id") Long id, Produto produto) {
-//		EntityManager mgr = getEntityManager();
-//		try {
-//			Supermercado supermercado = mgr.find(Supermercado.class, id);
-//			supermercado.delProduto(produto);
-//			mgr.persist(supermercado);
-//		} finally {
-//			mgr.close();
-//		}
-//	}
-	
-	
 	private boolean containsSupermercado(Supermercado supermercado) {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
+	        // If no ID was set, the entity doesn't exist yet.
+	        if(supermercado.getId() == null)
+	            return false;
 			Supermercado item = mgr.find(Supermercado.class, supermercado.getId());
 			if (item == null) {
 				contains = false;
@@ -190,5 +165,33 @@ public class SupermercadoEndpoint {
 	private static EntityManager getEntityManager() {
 		return EMF.get().createEntityManager();
 	}
-
+	
+	
+	@ApiMethod(name = "addSupermercadoProduto")
+	public Supermercado addSupermercadoProduto(@Named("id_supermercado") Long id_super, @Named("id_produto") Long id_prod) {
+		EntityManager mgr = getEntityManager();
+		Supermercado supermercado = null;
+		try {
+			supermercado = mgr.find(Supermercado.class, id_super);
+			supermercado.addProduto(id_prod);
+			mgr.persist(supermercado);	
+		} finally {
+			mgr.close();
+		}
+		return supermercado;
+	}
+	
+	@ApiMethod(name = "delSupermercadoProduto")
+	public Supermercado delSupermercadoProduto(@Named("id_supermercado") Long id_super, @Named("id_produto") Long id_prod) {
+		EntityManager mgr = getEntityManager();
+		Supermercado supermercado = null;
+		try {
+			supermercado = mgr.find(Supermercado.class, id_super);
+			supermercado.delProduto(id_prod);
+			mgr.persist(supermercado);	
+		} finally {
+			mgr.close();
+		}
+		return supermercado;
+	}
 }

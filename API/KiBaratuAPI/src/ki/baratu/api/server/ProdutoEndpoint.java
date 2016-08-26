@@ -10,7 +10,6 @@ import com.google.appengine.api.datastore.Cursor;
 import com.google.appengine.datanucleus.query.JPACursorHelper;
 
 import java.util.List;
-import java.util.logging.Logger;
 
 import javax.annotation.Nullable;
 import javax.inject.Named;
@@ -18,15 +17,11 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import java.util.logging.Logger;
 
-@Api(name = "produtoendpoint", namespace = @ApiNamespace(ownerDomain = "que.o", ownerName = "que.o", packagePath = "tem.de.barato.aqui.server"))
+
+@Api(name = "produtoendpoint", namespace = @ApiNamespace(ownerDomain = "baratu.ki", ownerName = "baratu.ki", packagePath = "api.server"))
 public class ProdutoEndpoint {
-	
-	private Logger log;
-	
-	public ProdutoEndpoint() {
-		  log = Logger.getLogger(ProdutoEndpoint.class.getName());
-	}
 
 	/**
 	 * This method lists all the entities inserted in datastore.
@@ -106,12 +101,10 @@ public class ProdutoEndpoint {
 			if (containsProduto(produto)) {
 				throw new EntityExistsException("Object already exists");
 			}
+			Logger log = Logger.getLogger(ProdutoEndpoint.class.getName()); 
+			log.info("Inserindo produto\n" + produto);
+
 			mgr.persist(produto);
-			
-			// TODO:
-			// Adicionar aqui código para verificar alertas!
-			ProcuraAlerta.findAlertaPorNomeProduto(produto);
-			
 		} finally {
 			mgr.close();
 		}
@@ -134,11 +127,6 @@ public class ProdutoEndpoint {
 				throw new EntityNotFoundException("Object does not exist");
 			}
 			mgr.persist(produto);
-			
-			// TODO:
-			// Adicionar aqui código para verificar alertas!
-			ProcuraAlerta.findAlertaPorNomeProduto(produto);		
-			
 		} finally {
 			mgr.close();
 		}
@@ -166,6 +154,9 @@ public class ProdutoEndpoint {
 		EntityManager mgr = getEntityManager();
 		boolean contains = true;
 		try {
+	        // If no ID was set, the entity doesn't exist yet.
+	        if(produto.getId() == null)
+	            return false;
 			Produto item = mgr.find(Produto.class, produto.getId());
 			if (item == null) {
 				contains = false;

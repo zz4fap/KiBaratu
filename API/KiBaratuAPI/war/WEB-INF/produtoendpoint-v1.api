@@ -24,9 +24,9 @@
     "type" : "no-cache",
     "maxAge" : 0
   },
-  "ownerDomain" : "que.o",
-  "ownerName" : "que.o",
-  "packagePath" : "tem.de.barato.aqui.server",
+  "ownerDomain" : "baratu.ki",
+  "ownerName" : "baratu.ki",
+  "packagePath" : "api.server",
   "methods" : {
     "produtoendpoint.listProduto" : {
       "path" : "produto",
@@ -53,27 +53,6 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "produtoendpoint.getProduto" : {
-      "path" : "produto/{id}",
-      "httpMethod" : "GET",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.getProduto",
-      "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
     "produtoendpoint.updateProduto" : {
       "path" : "produto",
       "httpMethod" : "PUT",
@@ -82,22 +61,6 @@
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
       "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.updateProduto",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "produtoendpoint.insertProduto" : {
-      "path" : "produto",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.insertProduto",
       "request" : {
         "body" : "autoTemplate(backendRequest)",
         "bodyName" : "resource"
@@ -125,6 +88,43 @@
       },
       "response" : {
         "body" : "empty"
+      }
+    },
+    "produtoendpoint.insertProduto" : {
+      "path" : "produto",
+      "httpMethod" : "POST",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.insertProduto",
+      "request" : {
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
+      }
+    },
+    "produtoendpoint.getProduto" : {
+      "path" : "produto/{id}",
+      "httpMethod" : "GET",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.ProdutoEndpoint.getProduto",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -156,24 +156,11 @@
           "nome" : {
             "type" : "string"
           },
-          "tipo" : {
-            "type" : "string"
-          },
           "marca" : {
             "type" : "string"
           },
           "preco" : {
             "type" : "number"
-          },
-          "peso" : {
-            "type" : "number"
-          },
-          "quantidade" : {
-            "type" : "integer"
-          },
-          "supermercadoId" : {
-            "type" : "string",
-            "format" : "int64"
           }
         }
       }
@@ -184,11 +171,6 @@
           "$ref" : "CollectionResponse_Produto"
         }
       },
-      "ki.baratu.api.server.ProdutoEndpoint.getProduto" : {
-        "response" : {
-          "$ref" : "Produto"
-        }
-      },
       "ki.baratu.api.server.ProdutoEndpoint.updateProduto" : {
         "request" : {
           "$ref" : "Produto"
@@ -196,6 +178,8 @@
         "response" : {
           "$ref" : "Produto"
         }
+      },
+      "ki.baratu.api.server.ProdutoEndpoint.removeProduto" : {
       },
       "ki.baratu.api.server.ProdutoEndpoint.insertProduto" : {
         "request" : {
@@ -205,7 +189,10 @@
           "$ref" : "Produto"
         }
       },
-      "ki.baratu.api.server.ProdutoEndpoint.removeProduto" : {
+      "ki.baratu.api.server.ProdutoEndpoint.getProduto" : {
+        "response" : {
+          "$ref" : "Produto"
+        }
       }
     }
   }

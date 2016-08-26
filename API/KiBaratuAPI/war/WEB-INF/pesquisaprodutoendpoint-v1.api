@@ -94,24 +94,11 @@
           "nome" : {
             "type" : "string"
           },
-          "tipo" : {
-            "type" : "string"
-          },
           "marca" : {
             "type" : "string"
           },
           "preco" : {
             "type" : "number"
-          },
-          "peso" : {
-            "type" : "number"
-          },
-          "quantidade" : {
-            "type" : "integer"
-          },
-          "supermercadoId" : {
-            "type" : "string",
-            "format" : "int64"
           }
         }
       }

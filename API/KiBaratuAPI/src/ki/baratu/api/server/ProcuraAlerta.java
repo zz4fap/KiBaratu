@@ -179,17 +179,11 @@ public class ProcuraAlerta {
 				
 				log.info("Preco cadastrado: "+preco+" - Preco alerta: "+alerta.getValorAlerta());
 				
-				Supermercado supermercado = getSupermercadoById(produto.getSupermercadoId());
-				
-				if(supermercado!=null)
-					log.info("Supermercado: "+supermercado.getNome());
-				else
-					log.info("Supermercado retornou null!!!!!");
-				
+			
 				//TODO:
 				// Notificar cada um dos usuarios com alertas.
 				// Alertar clientes!!!!!!!!!
-				Email.sendMail(alerta.getEmail(), produto, supermercado);
+				Email.sendMail(alerta.getEmail(), produto);
 				
 			}
 		}		
@@ -209,10 +203,10 @@ public class ProcuraAlerta {
 				
 				Produto produto = getProdutoById(id);
 				
-				// Se pesquisa retorna um produto, então verificar preço.
+				// Se pesquisa retorna um produto, entï¿½o verificar preï¿½o.
 				if(produto != null) {
 					
-					// Se preço cadastrado for menor do que o do alerta, então usuário deve ser alertado.
+					// Se preï¿½o cadastrado for menor do que o do alerta, entï¿½o usuï¿½rio deve ser alertado.
 					if(produto.getPreco() <= valor) {
 						
 						// Alertar clientes!!!!!!!!!
@@ -238,10 +232,10 @@ public class ProcuraAlerta {
 				
 				List<Produto> produtos = getProdutosByName(nome);
 				
-				// Se pesquisa retorna um produto, então verificar preço.
+				// Se pesquisa retorna um produto, entï¿½o verificar preï¿½o.
 				if(produtos != null) {
 					
-					// Se preço cadastrado for menor do que o do alerta, então usuário deve ser alertado.
+					// Se preï¿½o cadastrado for menor do que o do alerta, entï¿½o usuï¿½rio deve ser alertado.
 					
 					for(Produto produto : produtos) {
 						

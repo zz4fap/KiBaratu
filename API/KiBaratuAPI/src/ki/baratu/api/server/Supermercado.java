@@ -1,28 +1,29 @@
 package ki.baratu.api.server;
 
-import java.util.Collection;
+import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Supermercado {
 	
 	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
+	
 	private String nome;
 	private String unidade;
 	private String endereco;
 	private String localizacao;
 	
-	//private Collection<Produto> produtos;
+	private List<Long> produtos;
 	
 	public Long getId() {
 		return id;
 	}
-	public void setId(Long id) {
-		this.id = id;
-	}	
 	public String getNome() {
 		return nome;
 	}
@@ -47,15 +48,23 @@ public class Supermercado {
 	public void setLocalizacao(String localizacao) {
 		this.localizacao = localizacao;
 	}
+	public List<Long> getProdutos() {
+		return produtos;
+	}
+	public void setProdutos(List<Long> produtos) {
+		this.produtos = produtos;
+	}
 	
-//	public void addProduto(Produto produto)
-//	{
-//		this.produtos.add(produto);
-//	}
-//	
-//	public void delProduto(Produto produto)
-//	{
-//		this.produtos.remove(produto);
-//	}
+	public void addProduto(Long id)
+	{
+		this.produtos.add(id);
+	}
+	
+	public void delProduto(Long id)
+	{
+		this.produtos.remove(id);
+	}
+
+
 
 }

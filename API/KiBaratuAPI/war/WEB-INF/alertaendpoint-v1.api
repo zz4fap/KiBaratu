@@ -44,6 +44,27 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
+    "alertaendpoint.removeAlerta" : {
+      "path" : "alerta/{id}",
+      "httpMethod" : "DELETE",
+      "authLevel" : "NONE",
+      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
+      "audiences" : [ ],
+      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.removeAlerta",
+      "request" : {
+        "parameters" : {
+          "id" : {
+            "type" : "int64",
+            "required" : true
+          }
+        },
+        "body" : "empty"
+      },
+      "response" : {
+        "body" : "empty"
+      }
+    },
     "alertaendpoint.listAlerta" : {
       "path" : "alerta",
       "httpMethod" : "GET",
@@ -64,22 +85,6 @@
           }
         },
         "body" : "empty"
-      },
-      "response" : {
-        "body" : "autoTemplate(backendResponse)"
-      }
-    },
-    "alertaendpoint.insertAlerta" : {
-      "path" : "alerta",
-      "httpMethod" : "POST",
-      "authLevel" : "NONE",
-      "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
-      "audiences" : [ ],
-      "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.insertAlerta",
-      "request" : {
-        "body" : "autoTemplate(backendRequest)",
-        "bodyName" : "resource"
       },
       "response" : {
         "body" : "autoTemplate(backendResponse)"
@@ -106,25 +111,20 @@
         "body" : "autoTemplate(backendResponse)"
       }
     },
-    "alertaendpoint.removeAlerta" : {
-      "path" : "alerta/{id}",
-      "httpMethod" : "DELETE",
+    "alertaendpoint.insertAlerta" : {
+      "path" : "alerta",
+      "httpMethod" : "POST",
       "authLevel" : "NONE",
       "scopes" : [ "https://www.googleapis.com/auth/userinfo.email" ],
       "audiences" : [ ],
       "clientIds" : [ "292824132082.apps.googleusercontent.com" ],
-      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.removeAlerta",
+      "rosyMethod" : "ki.baratu.api.server.AlertaEndpoint.insertAlerta",
       "request" : {
-        "parameters" : {
-          "id" : {
-            "type" : "int64",
-            "required" : true
-          }
-        },
-        "body" : "empty"
+        "body" : "autoTemplate(backendRequest)",
+        "bodyName" : "resource"
       },
       "response" : {
-        "body" : "empty"
+        "body" : "autoTemplate(backendResponse)"
       }
     }
   },
@@ -181,9 +181,16 @@
           "$ref" : "Alerta"
         }
       },
+      "ki.baratu.api.server.AlertaEndpoint.removeAlerta" : {
+      },
       "ki.baratu.api.server.AlertaEndpoint.listAlerta" : {
         "response" : {
           "$ref" : "CollectionResponse_Alerta"
+        }
+      },
+      "ki.baratu.api.server.AlertaEndpoint.getAlerta" : {
+        "response" : {
+          "$ref" : "Alerta"
         }
       },
       "ki.baratu.api.server.AlertaEndpoint.insertAlerta" : {
@@ -193,13 +200,6 @@
         "response" : {
           "$ref" : "Alerta"
         }
-      },
-      "ki.baratu.api.server.AlertaEndpoint.getAlerta" : {
-        "response" : {
-          "$ref" : "Alerta"
-        }
-      },
-      "ki.baratu.api.server.AlertaEndpoint.removeAlerta" : {
       }
     }
   }
